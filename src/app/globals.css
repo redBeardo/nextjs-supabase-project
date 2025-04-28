@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), 'Inter', 'Geist', Arial, Helvetica, sans-serif;
+}
+
+.rbc-calendar,
+.rbc-month-view,
+.rbc-time-view,
+.rbc-agenda-view {
+  color: #1a202c; /* Tailwind's gray-900 */
+}
+
+/* Hide the navigation buttons in react-big-calendar */
+.rbc-toolbar button.rbc-btn-group button {
+  display: none;
+}
+
+/* Optionally, keep the "Today" button visible */
+.rbc-toolbar button.rbc-btn-group button.rbc-today {
+  display: inline-block;
+}
+
+.rbc-toolbar .rbc-btn-group:last-child {
+  display: none;
+}
+
+/* Modern Figma-inspired react-big-calendar styles */
+.rbc-toolbar {
+  background: transparent !important;
+  border: none !important;
+  margin-bottom: 1.5rem !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+.rbc-btn-group button {
+  background: #f3f4f6 !important; /* Tailwind gray-100 */
+  color: #1a202c !important;      /* Tailwind gray-900 */
+  border-radius: 9999px !important;
+  border: none !important;
+  margin: 0 0.25rem !important;
+  padding: 0.5rem 1.25rem !important;
+  font-weight: 600 !important;
+  transition: background 0.2s;
+}
+.rbc-btn-group button.rbc-active,
+.rbc-btn-group button:active {
+  background: #2563eb !important; /* Tailwind blue-700 */
+  color: #fff !important;
+}
+.rbc-calendar {
+  border-radius: 1.5rem !important;
+  border: none !important;
+  overflow: hidden;
+}
+.rbc-month-view, .rbc-time-view, .rbc-agenda-view {
+  border-radius: 1.5rem !important;
+  border: none !important;
+}
+.rbc-time-header, .rbc-header {
+  background: #f9fafb !important; /* Tailwind gray-50 */
+  color: #1e293b !important;      /* Tailwind slate-800 */
+  font-weight: 700 !important;
+  border-bottom: 1px solid #e5e7eb !important; /* Tailwind gray-200 */
+}
+.rbc-timeslot-group {
+  border-bottom: 1px solid #e5e7eb !important;
+}
+.custom-event-style:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10) !important;
+  transform: scale(1.03);
+  z-index: 2;
+}
+
+/* Modernize calendar fonts and timeline */
+.rbc-calendar, .rbc-header, .rbc-label, .rbc-time-gutter, .rbc-timeslot-group, .rbc-time-slot {
+  font-family: var(--font-sans), 'Inter', 'Geist', Arial, Helvetica, sans-serif !important;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.rbc-time-gutter, .rbc-time-content {
+  font-family: var(--font-sans), 'Inter', 'Geist', Arial, Helvetica, sans-serif !important;
+  font-size: 1rem !important;
+  color: #64748b !important; /* Tailwind slate-400 */
+  letter-spacing: 0.01em;
+}
+/* Only show horizontal lines on the hour */
+.rbc-timeslot-group {
+  border-bottom: 1px solid #e5e7eb !important; /* Tailwind gray-200 */
+}
+.rbc-timeslot-group:not(:first-child) .rbc-time-slot {
+  border-top: none !important;
+}
+.rbc-time-slot {
+  border: none !important;
+  background: transparent !important;
+}
+/* Remove vertical grid lines */
+.rbc-time-content > * {
+  border-right: none !important;
+}
+.rbc-time-content {
+  border-left: none !important;
+}
+/* Soften the time gutter background */
+.rbc-time-gutter {
+  background: #f9fafb !important; /* Tailwind gray-50 */
+  border-right: 1px solid #e5e7eb !important;
+  padding-right: 0.5rem !important;
+}
+
+/* Hide the default time label at the top of event cards in week/day views */
+.rbc-event-label {
+  display: none !important;
+}
+
+/* Ensure custom event styling takes precedence */
+.rbc-event.custom-event-style {
+  /* background: none !important; */
+}
+
+.rbc-event.custom-event-style > div {
+  height: 100%;
+  width: 100%;
+}
+
+.rbc-event.custom-event-style:focus {
+  outline: none !important;
+}

@@ -1,0 +1,5 @@
+session_name,session_description,session_start_time,session_length_minutes,session_room,title,description,speaker_name,speaker_email,co_speakers,presentation_type,audience_level,tags,scheduled_time,length_minutes,room
+Keynote,Opening remarks,2024-07-01T09:00:00Z,60,Main Hall,Welcome to the Conference,An introduction,Jane Doe,jane@example.com,,Keynote,All,"welcome,opening",2024-07-01T09:00:00Z,30,Main Hall
+Keynote,Opening remarks,2024-07-01T09:00:00Z,60,Main Hall,The Future of Tech,Trends and predictions,John Smith,john@example.com,,Keynote,Advanced,"future,tech",2024-07-01T09:30:00Z,30,Main Hall
+Session 1,Web Development,2024-07-01T10:00:00Z,90,Room A,Modern React,Hooks and context,Emily Roe,emily@example.com,,Talk,Intermediate,"react,web",2024-07-01T10:00:00Z,45,Room A
+Session 1,Web Development,2024-07-01T10:00:00Z,90,Room A,Next.js in Practice,SSR and SSG,Alex Lee,alex@example.com,,Talk,Intermediate,"nextjs,web",2024-07-01T10:45:00Z,45,Room A
