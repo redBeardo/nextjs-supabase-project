@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    optimizeFonts: true,
+    optimizeCss: true,
   },
   /* config options here */
 };

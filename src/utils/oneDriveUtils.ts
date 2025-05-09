@@ -1,7 +1,7 @@
 import { PublicClientApplication } from '@azure/msal-browser';
 import { msalConfig, loginRequest } from '../config/auth';
 
-export async function uploadToOneDrive(file: File, folderPath: string = 'Presentations'): Promise<string> {
+export async function uploadToOneDrive(file: File, folderPath: string = 'Conference Presentations'): Promise<string> {
   const msalInstance = new PublicClientApplication(msalConfig);
   await msalInstance.initialize();
 

@@ -3,6 +3,10 @@ if (!process.env.NEXT_PUBLIC_AZURE_CLIENT_ID) {
   console.error('NEXT_PUBLIC_AZURE_CLIENT_ID is not set');
 }
 
+if (!process.env.NEXT_PUBLIC_AZURE_TENANT_ID) {
+  console.error('NEXT_PUBLIC_AZURE_TENANT_ID is not set');
+}
+
 const getRedirectUri = () => {
   if (typeof window !== 'undefined') {
     // If we're on the test page, use that specific URL
@@ -17,7 +21,7 @@ const getRedirectUri = () => {
 export const msalConfig = {
   auth: {
     clientId: process.env.NEXT_PUBLIC_AZURE_CLIENT_ID!,
-    authority: 'https://login.microsoftonline.com/consumers',
+    authority: `https://login.microsoftonline.com/${process.env.NEXT_PUBLIC_AZURE_TENANT_ID}`,
     redirectUri: getRedirectUri(),
     postLogoutRedirectUri: getRedirectUri(),
   },

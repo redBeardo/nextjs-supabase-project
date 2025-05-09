@@ -27,6 +27,8 @@ const navGroups = [
     label: 'Admin Tools',
     items: [
       { name: 'Upload Status', href: '/admin-uploads' },
+      { name: 'PowerPoint Test', href: '/powerpoint-test' },
+      { name: 'Azure Login Test', href: '/test' },
     ],
   },
 ];

@@ -32,57 +32,11 @@ export default function AzureTest() {
         
         console.log('MSAL initialized successfully');
         
-        // Clear any existing tokens
-        sessionStorage.clear();
-        
         // Handle redirect
-        await instance.handleRedirectPromise();
+        const response = await instance.handleRedirectPromise();
         
-        // Check if user is already signed in
-        const accounts = instance.getAllAccounts();
-        console.log('Accounts:', accounts);
-
-        if (accounts.length > 0) {
-          console.log('Found existing account, attempting silent token acquisition...');
-          try {
-            const response = await instance.acquireTokenSilent({
-              ...loginRequest,
-              account: accounts[0]
-            });
-            console.log('Token acquired silently');
-            
-            const userResponse = await fetch('https://graph.microsoft.com/v1.0/me', {
-              headers: {
-                Authorization: `Bearer ${response.accessToken}`
-              }
-            });
-            
-            if (!userResponse.ok) {
-              throw new Error(`Graph API error: ${userResponse.statusText}`);
-            }
-            
-            const userData = await userResponse.json();
-            console.log('User data:', userData);
-            setUserInfo(userData);
-          } catch (silentError) {
-            console.log('Silent token acquisition failed, trying popup...', silentError);
-            throw silentError; // This will trigger the popup login
-          }
-        } else {
-          console.log('No accounts found, initiating popup login...');
-          throw new Error('No accounts found'); // This will trigger the popup login
-        }
-      } catch (error) {
-        console.log('Error in main try block:', error);
-        try {
-          console.log('Initiating popup login...');
-          const response = await instance.loginPopup({
-            ...loginRequest,
-            prompt: 'select_account', // Force account selection
-            redirectUri: window.location.origin
-          });
-          console.log('Popup login successful');
-          
+        if (response) {
+          console.log('Redirect response received');
           const userResponse = await fetch('https://graph.microsoft.com/v1.0/me', {
             headers: {
               Authorization: `Bearer ${response.accessToken}`
@@ -94,12 +48,47 @@ export default function AzureTest() {
           }
           
           const userData = await userResponse.json();
-          console.log('User data from popup:', userData);
+          console.log('User data:', userData);
           setUserInfo(userData);
-        } catch (loginError) {
-          console.error('Login error:', loginError);
-          setError('Failed to authenticate: ' + (loginError as Error).message);
+        } else {
+          // Check if user is already signed in
+          const accounts = instance.getAllAccounts();
+          console.log('Accounts:', accounts);
+
+          if (accounts.length > 0) {
+            console.log('Found existing account, attempting silent token acquisition...');
+            try {
+              const response = await instance.acquireTokenSilent({
+                ...loginRequest,
+                account: accounts[0]
+              });
+              console.log('Token acquired silently');
+              
+              const userResponse = await fetch('https://graph.microsoft.com/v1.0/me', {
+                headers: {
+                  Authorization: `Bearer ${response.accessToken}`
+                }
+              });
+              
+              if (!userResponse.ok) {
+                throw new Error(`Graph API error: ${userResponse.statusText}`);
+              }
+              
+              const userData = await userResponse.json();
+              console.log('User data:', userData);
+              setUserInfo(userData);
+            } catch (silentError) {
+              console.log('Silent token acquisition failed, initiating redirect...', silentError);
+              await instance.loginRedirect(loginRequest);
+            }
+          } else {
+            console.log('No accounts found, initiating redirect login...');
+            await instance.loginRedirect(loginRequest);
+          }
         }
+      } catch (error) {
+        console.error('Error in main try block:', error);
+        setError('Failed to authenticate: ' + (error as Error).message);
       } finally {
         setLoading(false);
       }
@@ -111,17 +100,10 @@ export default function AzureTest() {
   const handleLogout = async () => {
     if (msalInstance) {
       try {
-        const accounts = msalInstance.getAllAccounts();
-        if (accounts.length > 0) {
-          await msalInstance.logoutPopup({
-            account: accounts[0],
-            postLogoutRedirectUri: window.location.origin
-          });
-        }
+        await msalInstance.logoutRedirect();
         sessionStorage.clear();
         setUserInfo(null);
         setError(null);
-        window.location.reload(); // Refresh the page to clear any cached state
       } catch (error) {
         console.error('Logout error:', error);
       }

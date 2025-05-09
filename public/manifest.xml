@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+    xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+    xsi:type="TaskPaneApp">
+    <Id>b4685d67-cfc4-4e09-bbf3-13b25d16dc12</Id>
+    <Version>1.0.0.0</Version>
+    <ProviderName>TB Speaker Portal</ProviderName>
+    <DefaultLocale>en-US</DefaultLocale>
+    <DisplayName DefaultValue="PowerPoint Controller" />
+    <Description DefaultValue="Control PowerPoint presentations" />
+    <IconUrl DefaultValue="https://localhost:3000/icon.svg" />
+    <HighResolutionIconUrl DefaultValue="https://localhost:3000/icon.svg" />
+    <SupportUrl DefaultValue="https://localhost:3000" />
+    <Hosts>
+        <Host Name="Presentation" />
+    </Hosts>
+    <DefaultSettings>
+        <SourceLocation DefaultValue="https://localhost:3000/powerpoint-office" />
+    </DefaultSettings>
+    <Permissions>ReadWriteDocument</Permissions>
+</OfficeApp> 
