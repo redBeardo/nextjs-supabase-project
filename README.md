@@ -1,4 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TB Speaker Portal
+
+A Next.js application for managing speaker presentations and schedules, featuring a PowerPoint add-in for seamless presentation management.
+
+## Features
+
+- PowerPoint Add-in for direct presentation management
+- OneDrive integration for file storage
+- Supabase backend for data persistence
+- Azure AD authentication
+- Modern UI with Tailwind CSS
+
+## Recent Updates
+
+### PowerPoint Add-in (2024-03-20)
+- Successfully implemented and tested PowerPoint add-in
+- Added OneDrive integration for file storage
+- Implemented Azure AD authentication
+- Added database support for OneDrive file metadata
+- Created test page for add-in functionality
 
 ## Getting Started
 
@@ -16,21 +35,34 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## PowerPoint Add-in Development
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The PowerPoint add-in is located in the `src/app/powerpoint-test` directory. To test the add-in:
+
+1. Ensure you have the manifest file installed in your Office environment
+2. Open PowerPoint and load the add-in
+3. Navigate to the test page to verify functionality
+
+## Database Schema
+
+The application uses Supabase with the following main tables:
+
+- `presentations`: Stores presentation metadata and file information
+  - Basic fields: id, title, description
+  - File fields: file_url, file_provider
+  - OneDrive fields: onedrive_file_id, onedrive_web_url
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Supabase Documentation](https://supabase.com/docs)
+- [Office Add-ins Documentation](https://learn.microsoft.com/en-us/office/dev/add-ins/)
+- [Microsoft Graph API](https://learn.microsoft.com/en-us/graph/overview)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The application can be deployed on Vercel, with the PowerPoint add-in requiring additional configuration for Office integration.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

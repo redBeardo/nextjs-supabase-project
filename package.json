@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@azure/msal-browser": "^4.12.0",
     "@hello-pangea/dnd": "^18.0.1",
+    "@microsoft/office-js": "^1.1.110",
     "@supabase/supabase-js": "^2.49.4",
     "date-fns": "^4.1.0",
     "next": "15.3.1",

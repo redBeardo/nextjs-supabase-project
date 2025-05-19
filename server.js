@@ -3,14 +3,15 @@ const { parse } = require('url');
 const next = require('next');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const httpsOptions = {
-  key: fs.readFileSync(path.join(__dirname, 'certs/localhost.key')),
-  cert: fs.readFileSync(path.join(__dirname, 'certs/localhost.crt')),
+  key: fs.readFileSync(path.join(os.homedir(), '.office-addin-dev-certs/localhost.key')),
+  cert: fs.readFileSync(path.join(os.homedir(), '.office-addin-dev-certs/localhost.crt')),
 };
 
 app.prepare().then(() => {

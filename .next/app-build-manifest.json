@@ -6,30 +6,36 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
+    "/powerpoint-test/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/powerpoint-test/page.js"
     ],
-    "/test/page": [
+    "/import-schedule/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/test/page.js"
-    ],
-    "/speaker-upload/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/speaker-upload/page.js"
+      "static/chunks/app/import-schedule/page.js"
     ],
     "/admin-uploads/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin-uploads/page.js"
     ],
-    "/powerpoint-office/page": [
+    "/powerpoint-test/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/powerpoint-office/page.js"
+      "static/chunks/app/powerpoint-test/layout.js"
+    ],
+    "/test-layout/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/test-layout/layout.css",
+      "static/chunks/app/test-layout/layout.js"
+    ],
+    "/test-layout/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/test-layout/page.js"
     ]
   }
 }
